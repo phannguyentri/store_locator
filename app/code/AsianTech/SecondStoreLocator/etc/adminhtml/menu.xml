@@ -1,0 +1,7 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+	<menu>
+		<add id="AsianTech::top_level" module="AsianTech_SecondStoreLocator" resource="Magento_Backend::content" sortOrder="9999" title="AsianTech"/>
+		<add action="asiantech_secondstorelocator/secondstorelocator/index" id="AsianTech::asiantech_secondstorelocator_secondstorelocator" module="AsianTech_SecondStoreLocator" parent="AsianTech::top_level" resource="Magento_Backend::content" sortOrder="9999" title="SecondStoreLocator"/>
+	</menu>
+</config>

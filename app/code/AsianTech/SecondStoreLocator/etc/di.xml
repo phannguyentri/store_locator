@@ -1,0 +1,19 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+	<preference for="AsianTech\SecondStoreLocator\Api\SecondStoreLocatorRepositoryInterface" type="AsianTech\SecondStoreLocator\Model\SecondStoreLocatorRepository"/>
+	<preference for="AsianTech\SecondStoreLocator\Api\Data\SecondStoreLocatorInterface" type="AsianTech\SecondStoreLocator\Model\SecondStoreLocator"/>
+	<preference for="AsianTech\SecondStoreLocator\Api\Data\SecondStoreLocatorSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+	<virtualType name="AsianTech\SecondStoreLocator\Model\ResourceModel\SecondStoreLocator\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+		<arguments>
+			<argument name="mainTable" xsi:type="string">asiantech_secondstorelocator_secondstorelocator</argument>
+			<argument name="resourceModel" xsi:type="string">AsianTech\SecondStoreLocator\Model\ResourceModel\SecondStoreLocator\Collection</argument>
+		</arguments>
+	</virtualType>
+	<type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+		<arguments>
+			<argument name="collections" xsi:type="array">
+				<item name="asiantech_secondstorelocator_secondstorelocator_grid_data_source" xsi:type="string">AsianTech\SecondStoreLocator\Model\ResourceModel\SecondStoreLocator\Grid\Collection</item>
+			</argument>
+		</arguments>
+	</type>
+</config>

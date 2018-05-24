@@ -2,6 +2,7 @@
 return array (
   'modules' => 
   array (
+    'AsianTech_SecondStoreLocator' => 1,
     'AsianTech_StoreLocator' => 1,
     'Magento_Store' => 1,
     'Magento_Directory' => 1,

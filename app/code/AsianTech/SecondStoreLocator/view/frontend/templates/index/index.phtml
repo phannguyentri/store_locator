@@ -1,0 +1,90 @@
+<?php 
+	$data = $block->getRecords();
+
+	$i = 0;
+	foreach ($data as $val) {
+		echo '<button class="stores" 
+		  data-name="'.$val["name"].'" 
+		  data-lat="'.$val["latitude"].'" 
+		  data-lng="'.$val["longitude"].'" 
+		  data-address="'.$val["address"].'"
+		  data-opening="'.$val["hours_opening"].'" >'.$val["name"].'</button>';
+		$i++;
+		if ($i == 4) {
+			echo "<br />";
+			$i = 0;
+		}
+	}
+ ?>
+
+<div id="map"></div>
+
+<script>
+
+  	var map;
+  	var marker;
+  	var infowindow;
+  	function initMap() {
+    	map = new google.maps.Map(document.getElementById('map'), {
+      		center: {lat: 59.327, lng: 18.067},
+      		zoom: 12
+    	});
+		
+		marker = new google.maps.Marker({
+          	map: map,
+          	draggable: true,
+          	animation: google.maps.Animation.BOUNCE,
+
+        });
+
+	var contentString = '<div id="content">'+
+      '<div id="siteNotice">'+
+      '</div>'+
+      '<h3 id="firstHeading" class="firstHeading">Royaltea - Trà Sữa Hồng Kông</h3>'+
+      '<div id="bodyContent">'+
+      '<p>Địa chỉ: <b>957 Cách mạng tháng 8,P7, Tân Bình HCM</b></p>' +
+      '<p>Giờ mở cửa: <b>08:00AM - 10:00PM</b></p>' +
+      '<p>Attribution: Uluru, <a href="https://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">'+
+      'https://en.wikipedia.org/w/index.php?title=Uluru</a> '+
+      '(last visited June 22, 2009).</p>'+
+      '</div>'+
+      '</div>';
+
+	infowindow = new google.maps.InfoWindow({
+        content: contentString
+    });
+	infowindow.open(map,marker);
+
+  	}
+	require(['jquery', 'jquery/ui'], function($){ 
+		$(document).ready(function(){
+		    $("button").click(function(){
+		    	name 	= $(this).text();
+		    	address = $(this).attr('data-address');
+		    	opening = $(this).attr('data-opening');
+		        lat 	= parseInt($(this).attr('data-lat'));
+		        lng 	= parseInt($(this).attr('data-lng'));
+				var contentString = '<div id="content">'+
+			      '<div id="siteNotice">'+
+			      '</div>'+
+			      '<h3 id="firstHeading" class="firstHeading">'+name+'</h3>'+
+			      '<div id="bodyContent">'+
+			      '<p>Địa chỉ: <b>'+address+'</b></p>' +
+			      '<p>Giờ mở cửa: <b>'+opening+'</b></p>' +
+			      '<p>Attribution: Uluru, <a href="https://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">'+
+			      'https://en.wikipedia.org/w/index.php?title=Uluru</a> '+
+			      '(last visited June 22, 2009).</p>'+
+			      '</div>'+
+			      '</div>';
+
+		        marker.setPosition({lat: lat, lng: lng});
+		        map.setCenter({lat: lat, lng: lng});
+		        infowindow.setContent(contentString);
+		    });
+		});
+	});
+  	
+
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAA_nqc30k_F5eIAQv
+5q11gv4mcCfYEn1c&callback=initMap" async defer></script>
